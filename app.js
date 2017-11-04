@@ -3,6 +3,10 @@ var http = require('http').Server(app);
 var express = require('express');
 var router = express.Router();
 
+http.listen(3000, function(){
+    console.log('listening on *:3000');
+});
+
 var heroes =
 	[
 		{id: 1, name:"spiderman"},
@@ -36,29 +40,37 @@ app.post('/heroes/:id/:name', function (req, res) {
 	res.send("new user added");
 	var newId = req.params.id;
 	var newName = req.params.name;
-	for(i=0;i<=heroes;i++){
-		if(newId != heroes[i].id && newName != heroes[i].name){
-			var heroBlock = {"id":newId,"name":newName};
-			heroes.push(heroBlock);
-		}
-	}
-
-
+	var heroBlock = {id: newId, name:newName};
+	if(heroes.some(checkForExistingHero(newId,newName)) === true) {
+        heroes.push(heroBlock);
+    }
 });
-
 
 
 app.delete('/heroes/:id', function (req, res) {
 	res.send("user deleted");
-	var selectedUser = req.params.id;
-	delete heroes[selectedUser];
+    var newId = req.params.id;
+	if(heroes.some(checkForHeroById(newId)) === true) {
+        delete heroes[selectedUser];
+    }
+});
+
+app.delete('/heroes/:id', function (req, res) {
+    res.send();
+
 
 });
 
+function checkForHeroById(newId){
+	return newId = heroes.id
+}
 
 
-http.listen(3000, function(){
-	console.log('listening on *:3000');
-});
+function checkForExistingHero(newId,newName) {
+    return newId != heroes.id && newName != heroes.name;
+}
+
+
+
 
 
