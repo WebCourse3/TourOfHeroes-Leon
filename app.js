@@ -51,7 +51,7 @@ app.delete('/heroes/:id', function (req, res) {
 	res.send("user deleted");
     var newId = req.params.id;
 	if(heroes.some(checkForHeroById(newId)) === true) {
-        delete heroes[selectedUser];
+        delete heroes[newId];
     }
 });
 
