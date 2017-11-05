@@ -58,6 +58,13 @@ app.post('/heroes/:id/:name', function (req, res) {
 app.delete('/heroes/:id', function (req, res) {
 		heroes.splice((req.params.id - 1), 1);
 	res.send("user deleted");
+<<<<<<< HEAD
+=======
+    var newId = req.params.id;
+	if(heroes.some(checkForHeroById(newId)) === true) {
+        delete heroes[newId];
+    }
+>>>>>>> 46324d0638b515f1b86dda347c69010be49bc6a5
 });
 
 //delete by search of name
