@@ -13,29 +13,29 @@ var heroes =
 		{id: 2, name:"batman"},
 		{id: 3, name:"gispan"}
 	];
-
+//get specific hero by name+id
 app.get('/heroes/:id/:name', function (req, res) {
 	res.send(req.params)
 
 });
-
+//apparently my code doesnt run with this app.get
 app.get('/heroes', function (req, res) {
 	res.send(heroes);
 
 });
-
+//gets hero by id
 app.get('/heroes/:id', function (req, res) {
 	res.send(heroes[(req.params.id)-1]);
 
 });
-
+//changes hero name and returns him.
 app.put('/heroes/:id/:name', function (req, res) {
 	res.send(changedHero);
 
 	heroes[req.params.id].name = req.params.name;
 	var changedHero = heroes[req.params.id].name;
 });
-
+//add new hero to json array
 app.post('/heroes/:id/:name', function (req, res) {
 	res.send("new user added");
 	var newId = req.params.id;
@@ -46,7 +46,7 @@ app.post('/heroes/:id/:name', function (req, res) {
     }
 });
 
-
+//delete by id in url.
 app.delete('/heroes/:id', function (req, res) {
 	res.send("user deleted");
     var newId = req.params.id;
@@ -55,11 +55,23 @@ app.delete('/heroes/:id', function (req, res) {
     }
 });
 
-app.delete('/heroes/:id', function (req, res) {
+//delete by search
+app.delete('/heroes', function (req, res) {
     res.send();
+	if(heroes.some(checkForExistingHeroByQuery(req.query['name']))){
+		delete heroes.req.query['name'];
+	}
+	
+
+
 
 
 });
+
+function checkForExistingHeroByQuery(){
+	return heroes.name === req.query['name'];
+}
+
 
 function checkForHeroById(newId){
 	return newId = heroes.id
@@ -69,6 +81,7 @@ function checkForHeroById(newId){
 function checkForExistingHero(newId,newName) {
     return newId != heroes.id && newName != heroes.name;
 }
+
 
 
 
