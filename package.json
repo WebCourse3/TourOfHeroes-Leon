@@ -1,7 +1,6 @@
 {
   "name": "tourofheroesleon",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,5 +10,14 @@
   "dependencies": {
     "express": "^4.16.2",
     "socket.io": "^2.0.4"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WebCourse3/TourOfHeroes-Leon.git"
+  },
+  "bugs": {
+    "url": "https://github.com/WebCourse3/TourOfHeroes-Leon/issues"
+  },
+  "homepage": "https://github.com/WebCourse3/TourOfHeroes-Leon#readme",
+  "description": ""
 }
